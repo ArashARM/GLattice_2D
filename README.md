@@ -1,45 +1,37 @@
 # GLattice2D
 
-Beginner-friendly 2D re-implementation of the G-Lattice particle-tracing concept.
+This repository contains a beginner-friendly 2D implementation of the particle-tracing idea used in the G-Lattice method.
 
-## Configuration
+The purpose of this code is not only to generate lattice structures, but also to help you understand:
 
-The current design parameters are stored in `config.py`:
+- how a particle is represented in 2D,
+- how movement directions are defined,
+- how line segments are created,
+- how geometric constraints are applied,
+- how a lattice grows from multiple particle traces,
+- how boundary conditions affect connectivity,
+- how a sub-cell is mirrored into a complete lattice cell,
+- and how the cell can be repeated to form a larger lattice structure.
 
-- `M`: square design space `[0, M] x [0, M]`
-- `step_size`: movement distance at every particle step
-- `passage_angle`: passage-triangle angle in degrees
-- `required_weight`: target relative material amount
-- `strut_width`: width of each 2D strut
+You are not expected to understand the whole code immediately.
 
-Computational controls:
+The best way to work with this project is to study it in small steps.
 
-- `random_seed`
-- `max_iterations`
+---
 
-## Current implementation
+# 1. Recommended order to study the code
 
-The current `main.py` implements the first particle movement:
+Do not start from `GLattice2D.py`.
 
-1. Create a particle `P0` on the bottom boundary.
-2. Generate a random direction pointing into the square.
-3. Move the particle by one `step_size`.
-4. Obtain `P1 = P0 + step_size * direction`.
-5. Store/plot the segment `P0 -> P1` as the first strut.
+Start with the simplest files first.
 
-For this first learning step, the starting x-coordinate is kept slightly
-away from the left and right boundaries so that the first movement stays
-inside the square. This temporary restriction will be removed when
-periodic boundary handling is implemented.
+Recommended order:
 
-Run:
-
-```bash
-python main.py
-```
-
-## Next step
-
-Construct the 2D passage triangle from the current particle position and
-movement direction, then choose the next movement direction from inside it.
-# GLattice_2D
+```text
+1. Config.py
+2. Domain.py
+3. ParTracing.py
+4. Main.ipynb
+5. GLattice2D.py
+6. LatticeCell2D.py
+7. LatticeStructure2D.py
